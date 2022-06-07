@@ -16,8 +16,15 @@ type LoginResponse {
   user: User!
 }
 
+type Todo {
+  id: ID!
+  title: String!
+  contents: String!
+}
+
 type Query {
   user(where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int, distinct: [UserScalarFieldEnum!]): User!
+  todo(where: TodoWhereInput, orderBy: [TodoOrderByWithRelationInput!], cursor: TodoWhereUniqueInput, take: Int, skip: Int, distinct: [TodoScalarFieldEnum!]): Todo!
 }
 
 input UserWhereInput {
@@ -107,11 +114,39 @@ enum UserScalarFieldEnum {
   updatedAt
 }
 
+input TodoWhereInput {
+  AND: [TodoWhereInput!]
+  OR: [TodoWhereInput!]
+  NOT: [TodoWhereInput!]
+  id: IntFilter
+  title: StringFilter
+  contents: StringFilter
+}
+
+input TodoOrderByWithRelationInput {
+  id: SortOrder
+  title: SortOrder
+  contents: SortOrder
+}
+
+input TodoWhereUniqueInput {
+  id: Int
+}
+
+enum TodoScalarFieldEnum {
+  id
+  title
+  contents
+  createdAt
+  updatedAt
+}
+
 type Mutation {
   createUser(data: UserCreateInput!): User!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   refreshToken: LoginResponse!
   logout: Boolean!
+  createTodo(data: TodoCreateInput!): Todo!
 }
 
 input UserCreateInput {
@@ -123,4 +158,9 @@ input UserCreateInput {
 input LoginUserInput {
   email: String!
   password: String!
+}
+
+input TodoCreateInput {
+  title: String!
+  contents: String!
 }
