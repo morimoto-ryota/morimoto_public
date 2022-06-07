@@ -44,3 +44,17 @@ datasource db {
   /// @HideField({ input: true, output: true })
   updatedAt DateTime @updatedAt
 }
+
+model Todo {
+  /// @Field(() => ID)
+  id          Int       @id @default(autoincrement())
+  /// @Validator.IsNotEmpty()
+  title        String
+  contents        String
+
+  /// @HideField({ input: true, output: true })
+  createdAt DateTime @default(now())
+  /// @HideField({ input: true, output: true })
+  updatedAt DateTime @updatedAt
+
+}
