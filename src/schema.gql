@@ -148,6 +148,7 @@ type Mutation {
   logout: Boolean!
   createTodo(data: TodoCreateInput!): Todo!
   deleteTodo(where: TodoWhereUniqueInput!): Todo!
+  updateTodo(data: TodoUpdateInput!, where: TodoWhereUniqueInput!): Todo!
 }
 
 input UserCreateInput {
@@ -164,4 +165,9 @@ input LoginUserInput {
 input TodoCreateInput {
   title: String!
   contents: String!
+}
+
+input TodoUpdateInput {
+  title: String
+  contents: String
 }
