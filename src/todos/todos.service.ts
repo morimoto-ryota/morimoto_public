@@ -5,6 +5,7 @@ import { FindFirstTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/fin
 import { CreateOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/create-one-todo.args';
 import { FindUniqueTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/find-unique-todo.args';
 import { DeleteOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/delete-one-todo.args';
+import { UpdateOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/update-one-todo.args';
 
 @Injectable()
 export class TodosService {
@@ -26,5 +27,9 @@ export class TodosService {
 
     async deleteTodo(args: DeleteOneTodoArgs): Promise<Todo> {
         return this.prisma.todo.delete(args);
+    }
+
+    async updateTodo(args: UpdateOneTodoArgs): Promise<Todo> {
+        return this.prisma.todo.update(args);
     }
 }

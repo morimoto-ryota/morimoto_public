@@ -5,6 +5,7 @@ import { CreateOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/cre
 import { TodosService } from 'src/todos/todos.service';
 import { FindFirstTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/find-first-todo.args';
 import { DeleteOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/delete-one-todo.args';
+import { UpdateOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/update-one-todo.args';
 
 @Resolver(() => Todo)
 export class TodosResolver {
@@ -30,5 +31,12 @@ export class TodosResolver {
         @Args() Args: DeleteOneTodoArgs
     ) {
         return this.todoService.deleteTodo(Args);
+    }
+
+    @Mutation(() => Todo)
+    async updateTodo(
+        @Args() Args: UpdateOneTodoArgs
+    ) {
+        return this.todoService.updateTodo(Args);
     }
 }
