@@ -147,6 +147,7 @@ type Mutation {
   refreshToken: LoginResponse!
   logout: Boolean!
   createTodo(data: TodoCreateInput!): Todo!
+  deleteTodo(where: TodoWhereUniqueInput!): Todo!
 }
 
 input UserCreateInput {
