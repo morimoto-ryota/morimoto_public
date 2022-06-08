@@ -25,6 +25,7 @@ export class TodosResolver {
         return this.todoService.createTodo(args);
     }
 
+    @Mutation(() => Todo)
     async deleteTodo(
         @Args() Args: DeleteOneTodoArgs
     ) {
