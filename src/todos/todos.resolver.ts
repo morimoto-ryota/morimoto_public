@@ -7,6 +7,7 @@ import { FindFirstTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/fin
 import { DeleteOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/delete-one-todo.args';
 import { UpdateOneTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/update-one-todo.args';
 import { FindUniqueTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/find-unique-todo.args';
+import { FindManyTodoArgs } from 'src/@generated/prisma-nestjs-graphql/todo/find-many-todo.args';
 
 @Resolver(() => Todo)
 export class TodosResolver {
@@ -24,6 +25,13 @@ export class TodosResolver {
         @Args() args: FindUniqueTodoArgs
     ) {
         return this.todoService.findUnique(args)
+    }
+
+    @Query(() => Todo)
+    all(
+        @Args() args: FindManyTodoArgs
+    ) {
+        return this.todoService.findMany(args)
     }
 
     @Mutation(() => Todo)
